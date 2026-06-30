@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #222222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        #login {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 30px;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555555;
+        }
+
+        input {
+            padding: 10px 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background-color: #0052a3;
+        }
+
+        button:active {
+            background-color: #003d7a;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <form id="login" action="/api/login" method="post">
+            <div class="form-group">
+                <label for="usnm">Username</label>
+                <input id="usnm" name="username" type="text" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <input id="pwd" name="password" type="password" required autocomplete="current-password">
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+
+</html>

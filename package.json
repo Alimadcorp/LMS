@@ -1,0 +1,20 @@
+{
+  "name": "lms",
+  "module": "index.ts",
+  "main": "main.js",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "electron": "^43.0.0",
+    "express": "^5.2.1"
+  }
+}
