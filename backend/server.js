@@ -22,7 +22,8 @@ function createTables() {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             creation_time DATETIME DEFAULT CURRENT_TIMESTAMP,
             username TEXT,
-            password TEXT
+            password TEXT,
+            role TEXT
         )
     `); // List of users allowed to login C:
 
