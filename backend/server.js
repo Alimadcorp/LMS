@@ -55,7 +55,7 @@ app.get("/init", (req, res) => {
     }
     res.send("");
 });
-
+``
 app.post("/api/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
