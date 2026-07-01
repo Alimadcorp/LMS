@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { DatabaseSync } from 'node:sqlite';
 
 const app = express();
@@ -10,8 +11,6 @@ const db = new DatabaseSync("data.db");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-//let { iA }; // List of insertions, prefix: i
-let qLogins; // List of queries, prefix: q
 const tables = { startups: "startups" }; // Storing this like an enum for ease of use
 
 
