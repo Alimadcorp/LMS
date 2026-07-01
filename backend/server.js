@@ -49,6 +49,8 @@ console.log("Login historry:", qLogins.all());
 
 app.use(express.static(path.join(__dirname, 'static')));
 
+// init is where if theres no admin already, create an admin account, and then lead to admin page for user
+// to create user accounts
 app.get("/init", (req, res) => {
     if (qUsers.all().length === 0) {
         return res.send("/admin");
