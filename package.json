@@ -2,7 +2,7 @@
   "name": "lms",
   "module": "index.ts",
   "main": "main.js",
-  "type": "commonjs",
+  "type": "module",
   "private": true,
   "scripts": {
     "start": "electron ."

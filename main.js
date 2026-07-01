@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require('electron');
-const { exec } = require('child_process');
+import { app, BrowserWindow } from 'electron';
+import { exec } from 'child_process';
 
 let mainWindow;
 let backendProcess;
