@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { DatabaseSync } from 'node:sqlite';
 
+export const PORT = 4567;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -11,11 +12,20 @@ const db = new DatabaseSync("data.db");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const tables = { startups: "startups" }; // Storing this like an enum for ease of use
+const tables = { users: "users", startups: "startups" }; // Storing this like an enum for ease of use
 
 
 // Table creations:
 function createTables() {
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS ${tables.users} (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            creation_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+            username TEXT,
+            password TEXT
+        )
+    `); // List of users allowed to login C:
+
     db.exec(`
         CREATE TABLE IF NOT EXISTS ${tables.startups} (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,6 +39,7 @@ createTables();
 
 // Now we prepare queries
 const qLogins = db.prepare(`SELECT * FROM ${tables.startups} ORDER BY time DESC`);
+const qUsers = db.prepare(`SELECT * FROM ${tables.users} ORDER BY creation_time DESC`);
 
 // Now we prepare insertions
 const iLogin = db.prepare(`INSERT INTO ${tables.startups} (username) VALUES (?)`);
@@ -36,6 +47,13 @@ const iLogin = db.prepare(`INSERT INTO ${tables.startups} (username) VALUES (?)`
 console.log("Login historry:", qLogins.all());
 
 app.use(express.static(path.join(__dirname, 'static')));
+
+app.get("/init", (req, res) => {
+    if (qUsers.all().length === 0) {
+        return res.send("/admin");
+    }
+    res.send("");
+});
 
 app.post("/api/login", (req, res) => {
     const username = req.body.username;
@@ -53,7 +71,4 @@ app.post("/api/login", (req, res) => {
     }
 });
 
-// Rahahahah what do I doooo
-// :sob:
-
-app.listen(3000);
+app.listen(PORT);

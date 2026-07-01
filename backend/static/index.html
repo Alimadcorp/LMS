@@ -85,6 +85,9 @@
             background-color: #003d7a;
         }
     </style>
+    <script>
+        fetch('/init').then(e => e.text()).then(d => { if (d.length > 0) { window.location.href = window.location.href.replace(/\/$/); window.location.href += d; } });
+    </script>
 </head>
 
 <body>

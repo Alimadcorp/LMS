@@ -1,11 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import { exec } from 'child_process';
+import { PORT } from './backend/server.js';
 
 let mainWindow;
 let backendProcess;
 
 const serverLocation = "backend/server.js";
-const serverHost = "http://localhost:3000";
+const serverHost = "http://localhost:" + PORT;
 
 function createWindow() {
     mainWindow = new BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: false } });
